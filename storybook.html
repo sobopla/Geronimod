@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#original_text").on('input', function(){
+        var original_text = $("#original_text").val();
+        var doc = nlp(original_text);
+        var nouns = doc.nouns().out('array');
+        var verbs = doc.verbs().out('array');
+        var modified_text = original_text;
+        nouns.forEach(function(noun) {
+            modified_text = modified_text.replace(noun, '<span style="color:red;font-size:200%">'.concat(noun, "</span>"));
+        });
+        verbs.forEach(function(verb) {
+            modified_text = modified_text.replace(verb, '<span style="color:blue;font-size:150%">'.concat(verb, "</span>"));
+        });
+        $("#rendered").html(modified_text);
+    });
+});
+</script>
+<script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+</head>
+<body>
+Paste your text here:<br>
+<textarea id="original_text" rows="4" cols="50">
+</textarea>
+<br><br><br>
+<div id="rendered">
+</div>
+</body>
+<html>
