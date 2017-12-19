@@ -11,10 +11,12 @@ $(document).ready(function(){
         var verbs = doc.verbs().out('array');
         var modified_text = original_text;
         nouns.forEach(function(noun) {
-            modified_text = modified_text.replace(noun, '<span style="color:red;font-size:200%">'.concat(noun, "</span>"));
+            var re = new RegExp('\\b'.concat(noun, '\\b'));
+            modified_text = modified_text.replace(re, '<span style="color:red;font-size:200%">$&</span>');
         });
         verbs.forEach(function(verb) {
-            modified_text = modified_text.replace(verb, '<span style="color:blue;font-size:150%">'.concat(verb, "</span>"));
+            var re = new RegExp('\\b'.concat(verb, '\\b'));
+            modified_text = modified_text.replace(re, '<span style="color:blue;font-size:150%">$&</span>');
         });
         $("#rendered").html(modified_text);
     });
