@@ -19,7 +19,8 @@ $(document).ready(function(){
     var nouns = doc.nouns().out('array');
     var verbs = doc.verbs().out('array');
     var modified_text = original_text;
-    for(nouns(Math.random(0..nouns.length-1)){
+    var noun = nouns(Math.floor(Math.random()*nouns.length))
+    for (noun){
       modified_text = modified_text.replace(noun, '<span style="color:red;font-size:200%">'.concat'(noun, "</span>"));}
             $("#rendered").html(modified_text);
 
