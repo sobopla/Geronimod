@@ -16,14 +16,12 @@ $(document).ready(function(){
     var modified_text = original_text;
     // Modify just the first occurrence of one random noun
     // Filter out nouns to ignore, same as verbs
-    // highNouns = nouns.filter(function(noun) {
-    //   return ignoreNoun.indexOf(noun) === -1;
-    // });
-    // change the below to highNouns
-    // 
-    var noun_index = Math.floor(Math.random()*nouns.length);
+    var highNouns = nouns.filter(function (noun) {
+        return ignoreNoun.indexOf(noun) === -1;
+    });
+    var noun_index = Math.floor(Math.random()*highNouns.length);
     console.log(noun_index);
-    var noun = nouns[noun_index];
+    var noun = highNouns[noun_index];
     console.log(noun);
     
     modified_text = modified_text.replace(noun, '<span style="color:red;font-size:200%">'.concat(noun, "</span>"));
